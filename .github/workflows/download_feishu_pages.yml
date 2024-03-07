@@ -1,0 +1,170 @@
+name: Export feishu pages and create pull request to dev branch
+on: 
+  pull_request:
+    branches:
+      - feishu-pages/*
+jobs:
+  download_hk_site_feishu_pages:
+    name: Download feishu pages
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    if: ${{endsWith(github.ref_name,'hk-site')}}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Use feishu pages cache
+        uses: actions/cache@v3
+        id: hk_site_feishu_pages_export_cache
+        with:
+          path: ./feishu-pages/.cache
+          key: hk_site_feishu_pages_export_cache_key
+
+      - name: Start export feishu pages
+        env:
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_SPACE_ID: "7327965030941605889"
+          OUTPUT_DIR: ./feishu-pages
+          BASE_URL: ./
+          ROOT_NODE_TOKEN: ImyxwaA8gi8Am2kC4rEc8uHQnmb
+          
+        uses: longbridgeapp/feishu-pages@main
+
+      - uses: oven-sh/setup-bun@v1
+
+      - name: Copy feishu pages to repo
+        run: |
+          bun install
+          bun run setup
+
+      - name: Commit feishu pages to repo
+        run: |
+          git status
+          git add .
+          git config --global user.name "Longbridge Whale docs bot"
+          git config --global user.email "longbridge-whale-docs@users.noreply.github.com"
+          git commit -a -m "Commit feishu updated pages to repo"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: New feishu pages version request review
+          base: dev-hk-site
+          branch: ${{github.ref_name}}
+          title: "[Docs] New feishu pages version request review"
+          body: |
+            New feishu pages version request review
+          assignees: ihavecoke
+
+  download_sg_site_feishu_pages:
+    name: Download feishu pages
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    if: ${{endsWith(github.ref_name,'sg')}}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Use feishu pages cache
+        uses: actions/cache@v3
+        id: sg_site_feishu_pages_export_cache
+        with:
+          path: ./feishu-pages/.cache
+          key: sg_site_feishu_pages_export_cache_key
+
+      - name: Start export feishu pages
+        env:
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_SPACE_ID: "7327965030941605889"
+          OUTPUT_DIR: ./feishu-pages
+          BASE_URL: ./
+          ROOT_NODE_TOKEN: MUjKw9i3zi9puek05HkcYCtpnHf
+          
+        uses: longbridgeapp/feishu-pages@main
+
+      - uses: oven-sh/setup-bun@v1
+
+      - name: Copy feishu pages to repo
+        run: |
+          bun install
+          bun run setup
+
+      - name: Commit feishu pages to repo
+        run: |
+          git status
+          git add .
+          git config --global user.name "Longbridge Whale docs bot"
+          git config --global user.email "longbridge-whale-docs@users.noreply.github.com"
+          git commit -a -m "Commit feishu updated pages to repo"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: New feishu pages version request review
+          base: dev-sg-site
+          branch: ${{github.ref_name}}
+          title: "[Docs] New feishu pages version request review"
+          body: |
+            New feishu pages version request review
+          assignees: ihavecoke
+
+  download_whale_feishu_pages:
+    name: Download feishu pages
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    if: ${{endsWith(github.ref_name,'whale')}}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Use feishu pages cache
+        uses: actions/cache@v3
+        id: feishu_pages_export_cache
+        with:
+          path: ./feishu-pages/.cache
+          key: feishu_pages_export_cache_key
+
+      - name: Start export feishu pages
+        env:
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_SPACE_ID: "7327965030941605889"
+          OUTPUT_DIR: ./feishu-pages
+          BASE_URL: ./
+          ROOT_NODE_TOKEN: OGJmw2SZki14lgkujPjc4Pq4nbb
+          
+        uses: longbridgeapp/feishu-pages@main
+
+      - uses: oven-sh/setup-bun@v1
+
+      - name: Copy feishu pages to repo
+        run: |
+          bun install
+          bun run setup
+
+      - name: Commit feishu pages to repo
+        run: |
+          git status
+          git add .
+          git config --global user.name "Longbridge Whale docs bot"
+          git config --global user.email "longbridge-whale-docs@users.noreply.github.com"
+          git commit -a -m "Commit feishu updated pages to repo"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: New feishu pages version request review
+          base: dev-whale
+          branch: ${{github.ref_name}}
+          title: "[Docs] New feishu pages version request review"
+          body: |
+            New feishu pages version request review
+          assignees: ihavecoke
+
+  
+  

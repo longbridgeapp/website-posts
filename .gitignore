@@ -1,0 +1,10 @@
+.env
+*.DS_Store
+yarn-error.log
+package-lock.json
+node_modules/
+locales/assets/
+!docs/index.md
+.vitepress/cache/
+.vitepress/dist/
+feishu-pages/.cache

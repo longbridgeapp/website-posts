@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "setup": "./scripts/setup.sh",
+    "export": "bun run feishu-pages && bun run setup",
+    "dev": "vitepress dev",
+    "build": "bun run setup && vitepress build",
+    "clean": "rm -rf .vitepress/cache && rm -rf .vitepress/dist"
+  },
+  "dependencies": {
+    "autocorrect-node": "^2.8.4",
+    "autoprefixer": "^10.4.16",
+    "feishu-pages": "0.6.8",
+    "glob": "^10.3.10",
+    "medium-zoom": "^1.0.8",
+    "opencc-js": "^1.0.5",
+    "postcss": "^8.4.30",
+    "sass": "^1.69.3",
+    "tailwindcss": "^3.3.3",
+    "vitepress": "^1.0.0-rc.40"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  }
+}

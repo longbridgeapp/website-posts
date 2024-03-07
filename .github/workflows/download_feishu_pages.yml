@@ -1,6 +1,6 @@
 name: Export feishu pages and create pull request to dev branch
 on: 
-  pull_request:
+  push:
     branches:
       - feishu-pages/*
 jobs:
@@ -62,7 +62,7 @@ jobs:
     name: Download feishu pages
     timeout-minutes: 30
     runs-on: ubuntu-latest
-    if: ${{endsWith(github.ref_name,'sg')}}
+    if: ${{endsWith(github.ref_name,'sg-site')}}
     steps:
       - uses: actions/checkout@v4
         with:

@@ -76,8 +76,6 @@ function setIndex() {
       const slugReg = new RegExp(`/${langMetadata.slug}/${lang}`, "g");
       guidesContent = guidesContent.replace(slugReg, `/${lang}/posts`);
 
-      console.log("🚀 ~ langSlug.forEach ~ guidesContent:", guidesContent);
-
       const guidesTargetFilePath = path.resolve(
         __dirname,
         `../locales/${lang}/posts/index.md`

@@ -20,22 +20,22 @@ function convertToMd() {
   const regex = /\/([^\/]+)\/(zh-HK|zh-CN|en)\.md$/;
   docs.forEach((doc) => {
     const docContent = fs.readFileSync(doc, "utf-8");
-    const matches1 = doc.match(regex1) || [''];
+    const matches1 = doc.match(regex1) || [""];
     const matches = doc.match(regex) || [];
 
-    const locale = matches[2] || matches1[0].split('/')[0];
+    const locale = matches[2] || matches1[0].split("/")[0];
     const fileName = matches[1] || matches1[0].split("/")[1];
-    
+
     if (locale && fileName) {
       const filePath =
-        doc.split("feishu-pages")[0] + `/locales/${locale}/${fileName}.md`;
+        doc.split("feishu-pages")[0] +
+        `/locales/${locale}/posts/${fileName}.md`;
       if (!fs.existsSync(filePath)) {
         fs.mkdirSync(path.dirname(filePath), { recursive: true });
-      } 
+      }
       fs.writeFileSync(filePath, docContent);
     }
-  })
-
+  });
 }
 // Copy feishu-pages/assets/*.png to locales/assets
 function setupAssets() {
@@ -72,10 +72,15 @@ function setIndex() {
         __dirname,
         `../feishu-pages/docs/${langMetadata.slug}/${lang}.md`
       );
-      const guidesContent = fs.readFileSync(guidesFilePath, "utf-8");
+      let guidesContent = fs.readFileSync(guidesFilePath, "utf-8");
+      const slugReg = new RegExp(`/${langMetadata.slug}/${lang}`, "g");
+      guidesContent = guidesContent.replace(slugReg, `/${lang}/posts`);
+
+      console.log("🚀 ~ langSlug.forEach ~ guidesContent:", guidesContent);
+
       const guidesTargetFilePath = path.resolve(
         __dirname,
-        `../locales/${lang}/index.md`
+        `../locales/${lang}/posts/index.md`
       );
       fs.writeFileSync(guidesTargetFilePath, guidesContent);
       console.log(

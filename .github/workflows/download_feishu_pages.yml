@@ -78,7 +78,6 @@ jobs:
           FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
           FEISHU_SPACE_ID: "7327965030941605889"
           OUTPUT_DIR: ./feishu-pages
-          BASE_URL: ./
           ROOT_NODE_TOKEN: MUjKw9i3zi9puek05HkcYCtpnHf
           
         uses: longbridgeapp/feishu-pages@main

@@ -140,6 +140,9 @@ ol {
 .VPNavBarTitle {
   .title {
     font-size: 18px;
+    >span{
+      display: none;
+    }
   }
   .VPImage {
     margin-right: 16px;

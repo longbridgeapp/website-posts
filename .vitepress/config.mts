@@ -34,7 +34,7 @@ export default defineConfig({
     en: {
       label: "English",
       lang: "en",
-      link: "/en",
+      link: "/en/posts",
       themeConfig: {
         // nav: [{ text: "Whale Home", link: "https://longbridgewhale.com" }],
         // siteTitle: "Whale docs",
@@ -46,7 +46,7 @@ export default defineConfig({
     "zh-CN": {
       label: "简体中文",
       lang: "zh-CN",
-      link: "/zh-CN",
+      link: "/zh-CN/posts",
       themeConfig: {
         // siteTitle: "帮助中心",
         outline: "deep",
@@ -75,7 +75,7 @@ export default defineConfig({
     "zh-HK": {
       label: "繁体中文",
       lang: "zh-HK",
-      link: "/zh-HK",
+      link: "/zh-HK/posts",
       themeConfig: {
         // siteTitle: "幫助中心",
         // nav: [

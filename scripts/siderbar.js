@@ -42,7 +42,7 @@ function generateSidebarConfig(metaData, locale = "zh-HK") {
     const slug = doc.slug.replace(/(\/zh-HK|\/zh-CN|\/en)/, "");
     const sidebarItem = {
       text: doc.title,
-      link: `/${locale}/${slug}`,
+      link: `/${locale}/posts/${slug}`,
     };
 
     if (doc.has_child) {

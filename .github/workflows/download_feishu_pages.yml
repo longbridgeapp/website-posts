@@ -17,7 +17,7 @@ jobs:
           FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
           FEISHU_SPACE_ID: "7327965030941605889"
           OUTPUT_DIR: ./feishu-pages
-          BASE_URL: ./
+          BASE_URL: /
           ROOT_NODE_TOKEN: ImyxwaA8gi8Am2kC4rEc8uHQnmb
           
         uses: longbridgeapp/feishu-pages@main
@@ -60,7 +60,7 @@ jobs:
           FEISHU_SPACE_ID: "7327965030941605889"
           OUTPUT_DIR: ./feishu-pages
           ROOT_NODE_TOKEN: MUjKw9i3zi9puek05HkcYCtpnHf
-          BASE_URL: ./
+          BASE_URL: /
           
         uses: longbridgeapp/feishu-pages@main
 
@@ -101,7 +101,7 @@ jobs:
           FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
           FEISHU_SPACE_ID: "7327965030941605889"
           OUTPUT_DIR: ./feishu-pages
-          BASE_URL: ./
+          BASE_URL: /
           ROOT_NODE_TOKEN: OGJmw2SZki14lgkujPjc4Pq4nbb
           
         uses: longbridgeapp/feishu-pages@main

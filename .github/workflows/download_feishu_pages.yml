@@ -11,13 +11,6 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Use feishu pages cache
-        uses: actions/cache@v3
-        id: hk_site_feishu_pages_export_cache
-        with:
-          path: ./feishu-pages/.cache
-          key: hk_site_feishu_pages_export_cache_key
-
       - name: Start export feishu pages
         env:
           FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
@@ -38,22 +31,17 @@ jobs:
 
       - name: Commit feishu pages to repo
         run: |
+          BRANCH_NAME=update-pages-$(date +'%Y%m%d%H%M%S')
+          git checkout -b $BRANCH_NAME
           git status
           git add .
           git config --global user.name "Longbridge Whale docs bot"
           git config --global user.email "longbridge-whale-docs@users.noreply.github.com"
           git commit -a -m "Commit feishu updated pages to repo"
+          git push origin $BRANCH_NAME
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          commit-message: New feishu pages version request review
-          base: dev-hk-site
-          branch: ${{github.ref_name}}
-          title: "[Docs] New feishu pages version request review"
-          body: |
-            New feishu pages version request review
-          assignees: ihavecoke
+          # Create Pull Request
+          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"title":"Update feishu pages","head":"'$BRANCH_NAME'","base":"release-hk-site"}' https://api.github.com/repos/${{ github.repository }}/pulls
 
   download_sg_site_feishu_pages:
     name: Download feishu pages
@@ -65,13 +53,6 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Use feishu pages cache
-        uses: actions/cache@v3
-        id: sg_site_feishu_pages_export_cache
-        with:
-          path: ./feishu-pages/.cache
-          key: sg_site_feishu_pages_export_cache_key
-
       - name: Start export feishu pages
         env:
           FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
@@ -79,6 +60,7 @@ jobs:
           FEISHU_SPACE_ID: "7327965030941605889"
           OUTPUT_DIR: ./feishu-pages
           ROOT_NODE_TOKEN: MUjKw9i3zi9puek05HkcYCtpnHf
+          BASE_URL: ./
           
         uses: longbridgeapp/feishu-pages@main
 
@@ -91,22 +73,17 @@ jobs:
 
       - name: Commit feishu pages to repo
         run: |
+          BRANCH_NAME=update-pages-$(date +'%Y%m%d%H%M%S')
+          git checkout -b $BRANCH_NAME
           git status
           git add .
           git config --global user.name "Longbridge Whale docs bot"
           git config --global user.email "longbridge-whale-docs@users.noreply.github.com"
           git commit -a -m "Commit feishu updated pages to repo"
+          git push origin $BRANCH_NAME
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          commit-message: New feishu pages version request review
-          base: dev-sg-site
-          branch: ${{github.ref_name}}
-          title: "[Docs] New feishu pages version request review"
-          body: |
-            New feishu pages version request review
-          assignees: ihavecoke
+          # Create Pull Request
+          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"title":"Update feishu pages","head":"'$BRANCH_NAME'","base":"release-sg-site"}' https://api.github.com/repos/${{ github.repository }}/pulls
 
   download_whale_feishu_pages:
     name: Download feishu pages
@@ -117,13 +94,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-
-      - name: Use feishu pages cache
-        uses: actions/cache@v3
-        id: feishu_pages_export_cache
-        with:
-          path: ./feishu-pages/.cache
-          key: feishu_pages_export_cache_key
 
       - name: Start export feishu pages
         env:
@@ -145,22 +115,17 @@ jobs:
 
       - name: Commit feishu pages to repo
         run: |
+          BRANCH_NAME=update-pages-$(date +'%Y%m%d%H%M%S')
+          git checkout -b $BRANCH_NAME
           git status
           git add .
           git config --global user.name "Longbridge Whale docs bot"
           git config --global user.email "longbridge-whale-docs@users.noreply.github.com"
           git commit -a -m "Commit feishu updated pages to repo"
+          git push origin $BRANCH_NAME
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          commit-message: New feishu pages version request review
-          base: dev-whale
-          branch: ${{github.ref_name}}
-          title: "[Docs] New feishu pages version request review"
-          body: |
-            New feishu pages version request review
-          assignees: ihavecoke
+          # Create Pull Request
+          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"title":"Update feishu pages","head":"'$BRANCH_NAME'","base":"release-whale"}' https://api.github.com/repos/${{ github.repository }}/pulls
 
   
   

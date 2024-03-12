@@ -7,4 +7,3 @@ locales/assets/
 !docs/index.md
 .vitepress/cache/
 .vitepress/dist/
-feishu-pages/.cache

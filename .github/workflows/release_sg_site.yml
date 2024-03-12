@@ -1,6 +1,6 @@
 name: Deploy sg feishu pages to release
 on:
-  pull_request:
+  push:
     branches:
       - release-sg-site
 jobs:

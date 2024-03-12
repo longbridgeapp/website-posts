@@ -1,6 +1,6 @@
 name: Deploy whale feishu pages to release
 on:
-  pull_request:
+  push:
     branches:
       - release-whale
 jobs:

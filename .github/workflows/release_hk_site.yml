@@ -1,6 +1,6 @@
 name: Deploy hk feishu pages to release
 on:
-  pull_request:
+  push:
     branches:
       - release-hk-site
 jobs:
